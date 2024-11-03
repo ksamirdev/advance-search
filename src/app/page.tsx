@@ -7,7 +7,14 @@ import { useState } from "react";
 export default function Home() {
   const [search, setSearch] = useState("");
 
-  const query = useQuery({
+  const query = useQuery<
+    {
+      id: string;
+      title: string;
+      story: string;
+      tags: string;
+    }[]
+  >({
     queryKey: ["data", search],
     queryFn: async () => {
       const resp = await fetch(`/api/search?query=${search}`);
@@ -24,7 +31,7 @@ export default function Home() {
       />
 
       {(query.data?.length ?? 0) > 0 ? (
-        query.data.map((data) => {
+        query.data?.map((data) => {
           return (
             <div key={data.id} className="p-5 bg-secondary rounded">
               <div>
