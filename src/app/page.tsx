@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { insertData } from "./lib/db";
+
 import { insertStoryAction } from "./actions/story";
 import toast from "react-hot-toast";
 
