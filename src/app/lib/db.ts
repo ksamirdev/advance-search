@@ -1,8 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 
+const sql = neon(process.env.DATABASE_URL!);
 export async function getData(keyword: string) {
-  const sql = neon(process.env.DATABASE_URL!);
-
   const searchQuery = keyword
     .replace(/\s+/g, " & ")
     .replace(/&/g, " | ")
@@ -21,4 +20,10 @@ export async function getData(keyword: string) {
   `;
 
   return data;
+}
+
+export async function insertData(title: string, story: string, tags: string) {
+  await sql`
+    INSERT INTO blogs(title, story, tags) VALUES (${title}, ${story}, ${tags})
+    `;
 }

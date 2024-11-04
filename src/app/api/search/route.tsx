@@ -7,7 +7,5 @@ export async function GET(req: NextRequest) {
 
   const data = await getData(decodeURIComponent(query ?? ""));
 
-  console.log(data);
-
   return NextResponse.json(data);
 }
